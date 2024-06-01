@@ -1,0 +1,26 @@
+﻿@page
+@model Планеты.Pages.IndexModel;
+
+<h2>Planets</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Diameter (km)</th>
+            <th>Distance from Sun (million km)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var planet in Model.Planets)
+        {
+        <tr>
+            <td>@planet.Name</td>
+            <td>@planet.Description</td>
+            <td>@planet.Diameter</td>
+            <td>@planet.DistanceFromSun</td>
+        </tr>
+        }
+    </tbody>
+</table>
