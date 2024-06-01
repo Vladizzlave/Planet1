@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Планеты.Models;
 using Планеты.Data.ApplicationDbContext;
 using Microsoft.EntityFrameworkCore.Internal;
+using Планеты.Model;
+using System.Xml.Linq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +39,13 @@ using (var scope = app.Services.CreateScope())
     {
         var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
         dbContext.Database.Migrate();
+        if (dbContext.Planets.Any()) ;
+        dbContext.Planets.Add (new Planet() { Id = 1, Name = "Mercury", Description = "The smallest planet", Diameter = 4879, DistanceFromSun = 57.9 });
+        dbContext.Planets.Add(new Planet() { Id = 2, Name = "Venus", Description = "The second planet from the Sun", Diameter = 12104, DistanceFromSun = 108.2 });
+        dbContext.Planets.Add(new Planet() { Id = 3, Name = "Earth", Description = "Our home planet", Diameter = 12742, DistanceFromSun = 149.6 });
+
+
+        dbContext.SaveChanges();
     }
     catch(Exception ex)
     {
